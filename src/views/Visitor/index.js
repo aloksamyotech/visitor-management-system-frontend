@@ -102,7 +102,6 @@ const Visitor = () => {
       field: 'more',
       headerName: 'More',
       flex: 1,
-      // eslint-disable-next-line arrow-body-style
     }
   ];
 
