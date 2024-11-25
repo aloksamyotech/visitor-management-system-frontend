@@ -6,7 +6,6 @@ import { ToastContainer } from 'react-toastify';
 import 'react-toastify/dist/ReactToastify.css';
 
 // routing
-// this is for testing 
 import Routes from 'routes';
 
 // defaultTheme
