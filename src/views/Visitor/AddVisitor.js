@@ -237,7 +237,7 @@ const AddLead = (props) => {
                       <FormControlLabel value="Female" control={<Radio />} label="Female" />
                       <FormControlLabel value="Other" control={<Radio />} label="Other" />
                     </RadioGroup>
-                    <FormHelperText style={{ color: Palette.error.main }}>{formik.touched.gender && formik.errors.gender}</FormHelperText>
+                    <FormHelperText sx={{ color: Palette.error.main }}>{formik.touched.gender && formik.errors.gender}</FormHelperText>
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={7} md={3}>
@@ -304,8 +304,7 @@ const AddLead = (props) => {
                       value={formik.values.date}
                       onChange={formik.handleChange}
                     />
-                    
-                    <FormHelperText style={{ color: Palette.error.main }}>{formik.touched.date && formik.errors.date}</FormHelperText>
+                    <FormHelperText sx={{ color: Palette.error.main }}>{formik.touched.date && formik.errors.date}</FormHelperText>
                   </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={12} md={12}>
@@ -359,7 +358,7 @@ const AddLead = (props) => {
                     />
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={12} md={12} style={{ marginBlockEnd: '10px' }}>
+                <Grid item xs={12} sm={12} md={12} sx={{ marginBlockEnd: '10px' }}>
                   <FormControl fullWidth>
                     <FormLabel>Add Comment (optional)</FormLabel>
                     <TextField
