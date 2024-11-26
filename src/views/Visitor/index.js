@@ -84,7 +84,6 @@ const Visitor = () => {
     {
       field: 'date',
       headerName: 'Date'
-
     },
     // {
     //   field: 'entry_time',
@@ -101,7 +100,7 @@ const Visitor = () => {
     {
       field: 'more',
       headerName: 'More',
-      flex: 1,
+      flex: 1
     }
   ];
 
