@@ -42,7 +42,7 @@ const AddLead = (props) => {
     title: yup.string().required('required'),
     firstName: yup.string().required('First Name is required'),
     lastName: yup.string().required('Last Name is required'),
-    date: yup.string().required('Date is required'),
+    date: yup.date().required('Date is required'),
     gender: yup.string().required('Gender is required'),
     phoneNumber: yup
       .string()
