@@ -120,43 +120,44 @@ const AddAppointment = (props) => {
             <Typography style={{ marginBottom: '15px' }} variant="h6">
               Schedule Appointment
             </Typography>
-            <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
-              <Grid item md={12}>
-                <Grid item xs={12} sm={6} md={5}>
-                  <FormControl fullWidth>
-                    <FormLabel>Select Name</FormLabel>
-                    <Select
-                      id="name"
-                      name="name"
-                      size="small"
-                      value={formik.values.name}
-                      onChange={formik.handleChange}
-                      error={formik.touched.name && Boolean(formik.errors.name)}
-                    >
-                      <MenuItem value="Neeraj Chouhan">Neeraj Chouhan</MenuItem>
-                      <MenuItem value="Ashwin Sharma">Ashwin Sharma</MenuItem>
-                      <MenuItem value="Shubham Pal">Shubham Pal</MenuItem>
-                      <MenuItem value="Shreya Kushwah">Shreya Kushwah</MenuItem>
-                      <MenuItem value="Jay Jain">Jay Jain</MenuItem>
-                    </Select>
-                    <FormHelperText error={formik.touched.name && Boolean(formik.errors.name)}>
-                      {formik.touched.name && formik.errors.name}
-                    </FormHelperText>
-                  </FormControl>
-                </Grid>
-                <Grid item style={{ marginTop: '10px' }} xs={12} sm={6} md={5}>
-                  <FormLabel>Date</FormLabel>
-                  <TextField
-                    name="date"
-                    type="date"
+            <Grid container direction="row" rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
+              <Grid item xs={12} sm={6} md={5}>
+                <FormControl fullWidth>
+                  <FormLabel>Select Name</FormLabel>
+                  <Select
+                    id="name"
+                    name="name"
                     size="small"
-                    fullWidth
-                    value={formik.values.date}
+                    value={formik.values.name}
                     onChange={formik.handleChange}
-                    error={formik.touched.date && Boolean(formik.errors.date)}
-                    helperText={formik.touched.date && formik.errors.date}
-                  />
-                </Grid>
+                    error={formik.touched.name && Boolean(formik.errors.name)}
+                  >
+                    <MenuItem value="Neeraj Chouhan">Neeraj Chouhan</MenuItem>
+                    <MenuItem value="Ashwin Sharma">Ashwin Sharma</MenuItem>
+                    <MenuItem value="Shubham Pal">Shubham Pal</MenuItem>
+                    <MenuItem value="Shreya Kushwah">Shreya Kushwah</MenuItem>
+                    <MenuItem value="Jay Jain">Jay Jain</MenuItem>
+                  </Select>
+                  <FormHelperText error={formik.touched.name && Boolean(formik.errors.name)}>
+                    {formik.touched.name && formik.errors.name}
+                  </FormHelperText>
+                </FormControl>
+              </Grid>
+              <Grid md={5}>
+                {/* empty grid for allignment */}
+              </Grid>
+              <Grid item xs={12} sm={6} md={5}>
+                <FormLabel>Date</FormLabel>
+                <TextField
+                  name="date"
+                  type="date"
+                  size="small"
+                  fullWidth
+                  value={formik.values.date}
+                  onChange={formik.handleChange}
+                  error={formik.touched.date && Boolean(formik.errors.date)}
+                  helperText={formik.touched.date && formik.errors.date}
+                />
               </Grid>
               <Grid item xs={12} sm={6} md={5}>
                 <FormControl fullWidth>
