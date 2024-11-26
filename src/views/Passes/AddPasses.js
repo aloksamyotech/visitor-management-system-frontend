@@ -12,13 +12,13 @@ import TextField from '@mui/material/TextField';
 import ClearIcon from '@mui/icons-material/Clear';
 import { useFormik } from 'formik';
 import * as yup from 'yup';
-import { FormControl, FormHelperText, FormLabel, Select } from '@mui/material';
+import { Divider, FormControl, FormHelperText, FormLabel, Select } from '@mui/material';
 import MenuItem from '@mui/material/MenuItem';
 import { toast } from 'react-toastify';
 // import { useState, useEffect } from 'react';
 // import { apiget, apipost } from '../../service/api';
 
-const AddCalls = (props) => {
+const AddPasses = (props) => {
   const { open, handleClose } = props;
   //   const [leadData, setLeadData] = useState([]);
   //   const [contactData, setContactData] = useState([]);
@@ -28,21 +28,20 @@ const AddCalls = (props) => {
 
   // -----------  validationSchema
   const validationSchema = yup.object({
-    subject: yup.string().required('Subject is required'),
-    status: yup.string().required('Status is required'),
-    startDateTime: yup.string().required('Start Date & Time is required'),
-    duration: yup.string().required('Duration is required'),
-    relatedTo: yup.string().required('Related To is required'),
+    visitorName: yup.string().required('Select Name'),
+    passCode: yup.string().required('Passcode is required'),
+    validity: yup.string().required('validity is required'),
+    accessLevel: yup.string().required('Access is Required'),
     note: yup.string().required('Note is required')
   });
 
   // -----------   initialValues
   const initialValues = {
-    subject: '',
-    status: '',
-    startDateTime: '',
-    duration: '',
-    relatedTo: '',
+    visitorName: '',
+    passCode: '',
+    validityfrom: '',
+    validityto: '',
+    accessLevel: '',
     note: ''
     // createdBy: userid,
     // lead_id: _id,
@@ -84,9 +83,9 @@ const AddCalls = (props) => {
     validationSchema,
     onSubmit: async (values, { resetForm }) => {
       //   addCall(values);
-      console.log('CallValues', values);
+      console.log('PassValues', values);
       handleClose();
-      toast.success('Calls Add successfully');
+      toast.success('Pass Add successfully');
       resetForm();
     }
   });
@@ -106,7 +105,7 @@ const AddCalls = (props) => {
             justifyContent: 'space-between'
           }}
         >
-          <Typography variant="h6">Create Call </Typography>
+          <Typography variant="h6">Create Pass</Typography>
           <Typography>
             <ClearIcon onClick={handleClose} style={{ cursor: 'pointer' }} />
           </Typography>
@@ -115,101 +114,123 @@ const AddCalls = (props) => {
         <DialogContent dividers>
           <form>
             <DialogContentText id="scroll-dialog-description" tabIndex={-1}>
-              <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
-                <Grid item xs={12} sm={6} md={6}>
-                  <FormLabel>Subject</FormLabel>
-                  <TextField
-                    id="subject"
-                    name="subject"
-                    size="small"
-                    fullWidth
-                    value={formik.values.subject}
-                    onChange={formik.handleChange}
-                    error={formik.touched.subject && Boolean(formik.errors.subject)}
-                    helperText={formik.touched.subject && formik.errors.subject}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6} md={6}>
+              <Grid container sx={{ marginTop: 2 }}>
+                <Grid item xs={12}>
                   <FormControl fullWidth>
-                    <FormLabel>Status</FormLabel>
+                    <FormLabel>Select Name</FormLabel>
                     <Select
                       labelId="demo-simple-select-label"
-                      id="status"
-                      name="status"
+                      id="visitorName"
+                      name="visitorName"
                       size="small"
-                      value={formik.values.status}
+                      value={formik.values.visitorName}
                       onChange={formik.handleChange}
-                      error={formik.touched.status && Boolean(formik.errors.status)}
+                      error={formik.touched.visitorName && Boolean(formik.errors.visitorName)}
                     >
-                      <MenuItem value="Planned">Planned</MenuItem>
-                      <MenuItem value="Held">Held</MenuItem>
-                      <MenuItem value="Not Held">Not Held</MenuItem>
+                      <MenuItem value="user_1">User 1</MenuItem>
+                      <MenuItem value="user_2">User 2</MenuItem>
+                      <MenuItem value="user_3">User 3</MenuItem>
                     </Select>
-                    <FormHelperText error={formik.touched.status && Boolean(formik.errors.status)}>
-                      {formik.touched.status && formik.errors.status}
-                    </FormHelperText>
+                    <FormHelperText error={formik.touched.visitorName && Boolean(formik.errors.visitorName)}>{formik.touched.visitorName && formik.errors.visitorName}</FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={6}>
-                  <FormLabel>Start Date & Time</FormLabel>
-                  <TextField
-                    id="startDateTime"
-                    name="startDateTime"
-                    size="small"
-                    type="datetime-local"
-                    fullWidth
-                    value={formik.values.startDateTime}
-                    onChange={formik.handleChange}
-                    error={formik.touched.startDateTime && Boolean(formik.errors.startDateTime)}
-                    helperText={formik.touched.startDateTime && formik.errors.startDateTime}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6}>
+              </Grid>
+              <Grid container sx={{ marginTop: 2 }}>
+                <Grid item xs={12}>
                   <FormControl fullWidth>
-                    <FormLabel>Duration</FormLabel>
+                    <FormLabel>Set Passcode</FormLabel>
+                    <TextField
+                      id="passCode"
+                      name="passCode"
+                      size="small"
+                      fullWidth
+                      value={formik.values.passCode}
+                      onChange={formik.handleChange}
+                      error={formik.touched.passCode && Boolean(formik.errors.passCode)}
+                      helperText={formik.touched.passCode && formik.errors.passCode}
+                    />
+                  </FormControl>
+                </Grid>
+              </Grid>
+              <Grid container spacing={2} sx={{ marginTop: 1 }}>
+                <Grid item xs={6}>
+                  <FormControl>
+                    <FormLabel>Validity From</FormLabel>
+                    <TextField
+                      id="validityfrom"
+                      name="validityfrom"
+                      size="small"
+                      type=""
+                      label=""
+                      fullWidth
+                      value={formik.values.validityfrom}
+                      onChange={formik.handleChange}
+                      error={formik.touched.validityfrom && Boolean(formik.errors.validity)}
+                      helperText={formik.touched.validityfrom && formik.errors.validity}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={6}>
+                  <FormControl fullWidth>
+                    <FormLabel>Validity To</FormLabel>
+                    <TextField
+                      id="startDateTime"
+                      name="startDateTime"
+                      size="small"
+                      type=""
+                      label=""
+                      fullWidth
+                      value={formik.values.startDateTime}
+                      onChange={formik.handleChange}
+                      error={formik.touched.validityto && Boolean(formik.errors.validity)}
+                      helperText={formik.touched.validityto && formik.errors.validity}
+                    />
+                  </FormControl>
+                </Grid>
+              </Grid>
+              <Grid container spacing={2} sx={{ marginTop: 1 }}>
+                <Grid item xs={6}>
+                  <FormControl fullWidth>
+                    <FormLabel>Set Access</FormLabel>
                     <Select
                       labelId="demo-simple-select-label"
-                      id="duration"
-                      name="duration"
+                      id="accessLevel"
+                      name="accessLevel"
                       size="small"
-                      value={formik.values.duration}
+                      value={formik.values.accessLevel}
                       onChange={formik.handleChange}
-                      error={formik.touched.duration && Boolean(formik.errors.duration)}
+                      error={formik.touched.accessLevel && Boolean(formik.errors.accessLevel)}
                     >
-                      <MenuItem value="15 minutes">15 minutes</MenuItem>
-                      <MenuItem value="30 minutes">30 minutes</MenuItem>
-                      <MenuItem value="45 minutes">45 minutes</MenuItem>
-                      <MenuItem value="1 hour">1 hour</MenuItem>
-                      <MenuItem value="1.5 hours">1.5 hours</MenuItem>
-                      <MenuItem value="2 hours">2 hours</MenuItem>
-                      <MenuItem value="3 hours">3 hours</MenuItem>
+                      <MenuItem value="1st floor">1st Floor</MenuItem>
+                      <MenuItem value="2nd floor">2nd Floor</MenuItem>
+                      <MenuItem value="Full">Full</MenuItem>
+                      <MenuItem value="Restricted">Restricted</MenuItem>
                     </Select>
-                    <FormHelperText error={formik.touched.duration && Boolean(formik.errors.duration)}>
-                      {formik.touched.duration && formik.errors.duration}
-                    </FormHelperText>
+                    <FormHelperText error={formik.touched.accessLevel && Boolean(formik.errors.accessLevel)}>{formik.touched.accessLevel && formik.errors.accessLevel}</FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={6}>
+              </Grid>
+              <Grid container spacing={2} sx={{ marginTop: 1 }}>
+                <Grid item xs={12}>
                   <FormControl fullWidth>
-                    <FormLabel>Related To</FormLabel>
-                    <Select
-                      labelId="demo-simple-select-label"
-                      id="relatedTo"
-                      name="relatedTo"
+                    <FormLabel>Note</FormLabel>
+                    <TextField
+                      id="note"
+                      name="note"
                       size="small"
-                      value={formik.values.relatedTo}
+                      fullWidth
+                      rows={4}
+                      multiline
+                      placeholder='Add Comments Here...'
+                      value={formik.values.note}
                       onChange={formik.handleChange}
-                      error={formik.touched.relatedTo && Boolean(formik.errors.relatedTo)}
-                    >
-                      <MenuItem value="Lead">Lead</MenuItem>
-                      <MenuItem value="Contact">Contact</MenuItem>
-                    </Select>
-                    <FormHelperText error={formik.touched.relatedTo && Boolean(formik.errors.relatedTo)}>
-                      {formik.touched.relatedTo && formik.errors.relatedTo}
-                    </FormHelperText>
+                      error={formik.touched.note && Boolean(formik.errors.note)}
+                      helperText={formik.touched.note && formik.errors.note}
+                    />
                   </FormControl>
                 </Grid>
-                {/* {formik.values.relatedTo === 'Lead' && (
+              </Grid>
+              {/* {formik.values.relatedTo === 'Lead' && (
                   <Grid item xs={12} sm={6}>
                     <FormLabel>Lead</FormLabel>
                     <Autocomplete
@@ -231,7 +252,7 @@ const AddCalls = (props) => {
                     />
                   </Grid>
                 )} */}
-                {/* {formik.values.relatedTo === 'Contact' && (
+              {/* {formik.values.relatedTo === 'Contact' && (
                   <Grid item xs={12} sm={6}>
                     <FormLabel>Contact</FormLabel>
                     <Autocomplete
@@ -253,22 +274,6 @@ const AddCalls = (props) => {
                     />
                   </Grid>
                 )} */}
-                <Grid item xs={12} sm={12}>
-                  <FormLabel>Note</FormLabel>
-                  <TextField
-                    id="note"
-                    name="note"
-                    size="small"
-                    fullWidth
-                    rows={4}
-                    multiline
-                    value={formik.values.note}
-                    onChange={formik.handleChange}
-                    error={formik.touched.note && Boolean(formik.errors.note)}
-                    helperText={formik.touched.note && formik.errors.note}
-                  />
-                </Grid>
-              </Grid>
             </DialogContentText>
           </form>
         </DialogContent>
@@ -290,8 +295,8 @@ const AddCalls = (props) => {
           </Button>
         </DialogActions>
       </Dialog>
-    </div>
+    </div >
   );
 };
 
-export default AddCalls;
+export default AddPasses;
