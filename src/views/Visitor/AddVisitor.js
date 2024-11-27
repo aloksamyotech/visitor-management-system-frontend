@@ -8,12 +8,12 @@ import {
   FormHelperText,
   FormLabel,
   Grid,
-  InputAdornment,
+  // InputAdornment,
   MenuItem,
-  OutlinedInput,
+  // OutlinedInput,
   Radio,
   RadioGroup,
-  Rating,
+  // Rating,
   Select,
   TextField
 } from '@mui/material';
@@ -39,7 +39,7 @@ const AddLead = (props) => {
 
   // -----------  validationSchema
   const validationSchema = yup.object({
-    title: yup.string().required('Title is required'),
+    title: yup.string().required('required'),
     firstName: yup.string().required('First Name is required'),
     lastName: yup.string().required('Last Name is required'),
     date: yup.date().required('Date is required'),
@@ -50,6 +50,8 @@ const AddLead = (props) => {
       .required('Phone number is required'),
     emailAddress: yup.string().email('Invalid email').required('Email is required'),
     address: yup.string().required('Address is required'),
+    idType: yup.string().required('ID is required'),
+    idNumber: yup.string().required('ID Number is required')
   });
 
   // -----------   initialValues
@@ -134,11 +136,11 @@ const AddLead = (props) => {
         <DialogContent dividers>
           <form>
             <DialogContentText id="scroll-dialog-description" tabIndex={-1}>
-              <Typography style={{ marginBottom: '15px' }} variant="h6">
+              <Typography sx={{ marginBottom: '15px' }} variant="h6">
                 Basic Information
               </Typography>
-              <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
-                <Grid item xs={12} sm={4} md={2}>
+              <Grid container rowSpacing={3} columnSpacing={{ xs: 2, sm: 5, md: 4 }}>
+                <Grid item xs={4} sm={3} md={2}>
                   <FormControl fullWidth>
                     <FormLabel>Title</FormLabel>
                     <Select
@@ -159,65 +161,73 @@ const AddLead = (props) => {
                       <MenuItem value="Ms.">Ms. </MenuItem>
                       <MenuItem value="Dr.">Dr. </MenuItem>
                     </Select>
-                    <FormHelperText style={{ color: Palette.error.main }}>{formik.touched.title && formik.errors.title}</FormHelperText>
+                    <FormHelperText sx={{ color: Palette.error.main }}>{formik.touched.title && formik.errors.title}</FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={4} md={5}>
-                  <FormLabel>First name</FormLabel>
-                  <TextField
-                    id="fristName"
-                    name="firstName"
-                    label=""
-                    size="small"
-                    maxRows={10}
-                    fullWidth
-                    value={formik.values.firstName}
-                    onChange={formik.handleChange}
-                    error={formik.touched.firstName && Boolean(formik.errors.firstName)}
-                    helperText={formik.touched.firstName && formik.errors.firstName}
-                  />
+                <Grid item xs={12} sm={12} md={5}>
+                  <FormControl fullWidth>
+                    <FormLabel>First name</FormLabel>
+                    <TextField
+                      id="fristName"
+                      name="firstName"
+                      label=""
+                      size="small"
+                      maxRows={10}
+                      fullWidth
+                      value={formik.values.firstName}
+                      onChange={formik.handleChange}
+                      error={formik.touched.firstName && Boolean(formik.errors.firstName)}
+                      helperText={formik.touched.firstName && formik.errors.firstName}
+                    />
+                  </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={4} md={5}>
-                  <FormLabel>Last name</FormLabel>
-                  <TextField
-                    id="lastName"
-                    name="lastName"
-                    label=""
-                    size="small"
-                    fullWidth
-                    value={formik.values.lastName}
-                    onChange={formik.handleChange}
-                    error={formik.touched.lastName && Boolean(formik.errors.lastName)}
-                    helperText={formik.touched.lastName && formik.errors.lastName}
-                  />
-                </Grid>
-                <Grid item xs={12} sm={6} md={6}>
-                  <FormLabel>Phone number</FormLabel>
-                  <TextField
-                    id="phoneNumber"
-                    name="phoneNumber"
-                    type="number"
-                    size="small"
-                    fullWidth
-                    value={formik.values.phoneNumber}
-                    onChange={formik.handleChange}
-                    error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
-                    helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
-                  />
+                <Grid item xs={12} sm={12} md={5}>
+                  <FormControl fullWidth>
+                    <FormLabel>Last name</FormLabel>
+                    <TextField
+                      id="lastName"
+                      name="lastName"
+                      label=""
+                      size="small"
+                      fullWidth
+                      value={formik.values.lastName}
+                      onChange={formik.handleChange}
+                      error={formik.touched.lastName && Boolean(formik.errors.lastName)}
+                      helperText={formik.touched.lastName && formik.errors.lastName}
+                    />
+                  </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6} md={6}>
-                  <FormLabel>Email</FormLabel>
-                  <TextField
-                    id="emailAddress"
-                    name="emailAddress"
-                    label=""
-                    size="small"
-                    fullWidth
-                    value={formik.values.emailAddress}
-                    onChange={formik.handleChange}
-                    error={formik.touched.emailAddress && Boolean(formik.errors.emailAddress)}
-                    helperText={formik.touched.emailAddress && formik.errors.emailAddress}
-                  />
+                  <FormControl fullWidth>
+                    <FormLabel>Phone number</FormLabel>
+                    <TextField
+                      id="phoneNumber"
+                      name="phoneNumber"
+                      type="number"
+                      size="small"
+                      fullWidth
+                      value={formik.values.phoneNumber}
+                      onChange={formik.handleChange}
+                      error={formik.touched.phoneNumber && Boolean(formik.errors.phoneNumber)}
+                      helperText={formik.touched.phoneNumber && formik.errors.phoneNumber}
+                    />
+                  </FormControl>
+                </Grid>
+                <Grid item xs={12} sm={6} md={6}>
+                  <FormControl fullWidth>
+                    <FormLabel>Email</FormLabel>
+                    <TextField
+                      id="emailAddress"
+                      name="emailAddress"
+                      label=""
+                      size="small"
+                      fullWidth
+                      value={formik.values.emailAddress}
+                      onChange={formik.handleChange}
+                      error={formik.touched.emailAddress && Boolean(formik.errors.emailAddress)}
+                      helperText={formik.touched.emailAddress && formik.errors.emailAddress}
+                    />
+                  </FormControl>
                 </Grid>
                 <Grid item xs={12}>
                   <FormControl fullWidth>
@@ -227,10 +237,10 @@ const AddLead = (props) => {
                       <FormControlLabel value="Female" control={<Radio />} label="Female" />
                       <FormControlLabel value="Other" control={<Radio />} label="Other" />
                     </RadioGroup>
-                    <FormHelperText style={{ color: Palette.error.main }}>{formik.touched.gender && formik.errors.gender}</FormHelperText>
+                    <FormHelperText sx={{ color: Palette.error.main }}>{formik.touched.gender && formik.errors.gender}</FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={6} md={3}>
+                <Grid item xs={12} sm={7} md={3}>
                   <FormControl fullWidth>
                     <FormLabel>Visitor Type</FormLabel>
                     <Select
@@ -248,7 +258,7 @@ const AddLead = (props) => {
                     </Select>
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={6} md={3}>
+                <Grid item xs={12} sm={7} md={3}>
                   <FormControl fullWidth>
                     <FormLabel>ID Type</FormLabel>
                     <Select
@@ -265,94 +275,104 @@ const AddLead = (props) => {
                       <MenuItem value="panCard">Pan Card</MenuItem>
                       <MenuItem value="voterId">Voter ID</MenuItem>
                     </Select>
+                    <FormHelperText sx={{ color: Palette.error.main }}>{formik.touched.idType && formik.errors.idType}</FormHelperText>
                   </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={6} md={6}>
-                  <FormLabel>ID Number</FormLabel>
-                  <TextField
-                    id="idNumber"
-                    name="idNumber"
-                    size="small"
-                    fullWidth
-                    value={formik.values.idNumber}
-                    onChange={formik.handleChange}
-                  />
+                <Grid item xs={12} sm={7} md={6}>
+                  <FormControl fullWidth>
+                    <FormLabel>ID Number</FormLabel>
+                    <TextField
+                      id="idNumber"
+                      name="idNumber"
+                      size="small"
+                      fullWidth
+                      value={formik.values.idNumber}
+                      onChange={formik.handleChange}
+                    />
+                    <FormHelperText sx={{ color: Palette.error.main }}>{formik.touched.idNumber && formik.errors.idNumber}</FormHelperText>
+                  </FormControl>
                 </Grid>
-                <Grid item xs={12} sm={6} md={4}>
-                  <FormLabel>Date</FormLabel>
-                  <TextField
-                    id="date"
-                    name="date"
-                    type="date"
-                    size="small"
-                    fullWidth
-                    value={formik.values.date}
-                    onChange={formik.handleChange}
-                  />
+                <Grid item xs={12} sm={7} md={4}>
+                  <FormControl fullWidth>
+                    <FormLabel>Date</FormLabel>
+                    <TextField
+                      id="date"
+                      name="date"
+                      type="date"
+                      size="small"
+                      fullWidth
+                      value={formik.values.date}
+                      onChange={formik.handleChange}
+                    />
+                    <FormHelperText sx={{ color: Palette.error.main }}>{formik.touched.date && formik.errors.date}</FormHelperText>
+                  </FormControl>
                 </Grid>
-
                 <Grid item xs={12} sm={12} md={12}>
-                  <FormLabel>Address</FormLabel>
-                  <TextField
-                    id="address"
-                    name="address"
-                    label=""
-                    size="small"
-                    multiline
-                    rows={5}
-                    fullWidth
-                    value={formik.values.address}
-                    onChange={formik.handleChange}
-                    error={formik.touched.address && Boolean(formik.errors.address)}
-                    helperText={formik.touched.address && formik.errors.address}
-                  />
+                  <FormControl fullWidth>
+                    <FormLabel>Address</FormLabel>
+                    <TextField
+                      id="address"
+                      name="address"
+                      label=""
+                      size="small"
+                      multiline
+                      rows={5}
+                      fullWidth
+                      value={formik.values.address}
+                      onChange={formik.handleChange}
+                      error={formik.touched.address && Boolean(formik.errors.address)}
+                      helperText={formik.touched.address && formik.errors.address}
+                    />
+                  </FormControl>
                 </Grid>
               </Grid>
-              <Typography style={{ marginBottom: '15px', marginTop: '35px' }} variant="h6">
+              <Typography sx={{ marginBottom: '15px', marginTop: '35px' }} variant="h6">
                 Additional Details
               </Typography>
               <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
                 <Grid item xs={12} sm={6} md={4}>
-                  <FormLabel>Entry Time</FormLabel>
-                  <TextField
-                    id="entryTime"
-                    name="entryTime"
-                    type="number"
-                    size="small"
-                    fullWidth
-                    value={formik.values.entryTime}
-                    onChange={formik.handleChange}
-                  />
+                  <FormControl fullWidth>
+                    <FormLabel>Entry Time</FormLabel>
+                    <TextField
+                      id="entryTime"
+                      name="entryTime"
+                      type="number"
+                      size="small"
+                      fullWidth
+                      value={formik.values.entryTime}
+                      onChange={formik.handleChange}
+                    />
+                  </FormControl>
                 </Grid>
                 <Grid item xs={12} sm={6} md={4}>
-                  <FormLabel>Exit Time</FormLabel>
-                  <TextField
-                    id="exitTime"
-                    name="exitTime"
-                    type="number"
-                    size="small"
-                    fullWidth
-                    value={formik.values.exitTime}
-                    onChange={formik.handleChange}
-                  />
+                  <FormControl fullWidth>
+                    <FormLabel>Exit Time</FormLabel>
+                    <TextField
+                      id="exitTime"
+                      name="exitTime"
+                      type="number"
+                      size="small"
+                      fullWidth
+                      value={formik.values.exitTime}
+                      onChange={formik.handleChange}
+                    />
+                  </FormControl>
                 </Grid>
-              </Grid>
-              <Grid container style={{ marginTop: '3px' }} rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
-                <Grid item xs={12} sm={12} md={12} style={{ marginBlockEnd: '10px' }}>
-                  <FormLabel>Add Comment (optional)</FormLabel>
-                  <TextField
-                    id="comment"
-                    name="comment"
-                    size="small"
-                    rows={3}
-                    multiline
-                    fullWidth
-                    value={formik.values.comment}
-                    onChange={formik.handleChange}
-                  />
+                <Grid item xs={12} sm={12} md={12} sx={{ marginBlockEnd: '10px' }}>
+                  <FormControl fullWidth>
+                    <FormLabel>Add Comment (optional)</FormLabel>
+                    <TextField
+                      id="comment"
+                      name="comment"
+                      size="small"
+                      rows={3}
+                      multiline
+                      fullWidth
+                      value={formik.values.comment}
+                      onChange={formik.handleChange}
+                    />
+                  </FormControl>
                 </Grid>
-              </Grid>
-              <Grid container rowSpacing={3} columnSpacing={{ xs: 0, sm: 5, md: 4 }}>
               </Grid>
             </DialogContentText>
           </form>
@@ -374,7 +394,7 @@ const AddLead = (props) => {
         </DialogActions>
       </Dialog>
     </div>
-  )
+  );
 };
 
 export default AddLead;

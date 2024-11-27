@@ -2,12 +2,21 @@
 /* eslint-disable react-hooks/exhaustive-deps */
 import { useState } from 'react';
 // @mui
-import { Stack, Button, Container, Typography, Box, Card } from '@mui/material';
+import { Stack, Button, Container, Typography, Box, Card, Breadcrumbs, Divider, TextField } from '@mui/material';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
-
-import Iconify from '../../ui-component/iconify';
+// import { Link } from 'react-router-dom';
+// import Iconify from '../../ui-component/iconify';
 import TableStyle from '../../ui-component/TableStyle';
 import AddVisitor from './AddVisitor.js';
+import { Link } from '@mui/material';
+import { IconButton } from '@mui/material';
+
+//icons
+import HomeIcon from '@mui/icons-material/Home';
+import SearchIcon from '@mui/icons-material/Search';
+import AddIcon from '@mui/icons-material/Add';
+
+
 
 // ----------------------------------------------------------------------
 
@@ -84,7 +93,6 @@ const Visitor = () => {
     {
       field: 'date',
       headerName: 'Date'
-
     },
     // {
     //   field: 'entry_time',
@@ -101,8 +109,34 @@ const Visitor = () => {
     {
       field: 'more',
       headerName: 'More',
-      flex: 1,
+      flex: 1
     }
+  ];
+
+  // const handleClick = (event) => {
+  //   event.preventDefault();
+  //   console.info('You clicked a breadcrumb.');
+  // } =>testing purpose only
+
+  const breadcrumbs = [
+    <Typography key="1" color="secondary" sx={{ paddingX: "7px" }}>
+      <Link href="/dashboard/default" color={"secondary"}
+      // onClick={handleClick}
+      >
+        <HomeIcon sx={{ fontSize: "18px" }} />
+      </Link>
+    </Typography>
+    ,
+    <Typography key="2" color="inherit" sx={{ paddingX: "7px" }}>
+      <Link href="/dashboard/visitors/" sx={{ textDecoration: "none", color: "black", fontWeight: "500" }}
+      // onClick={handleClick}
+      >
+        Visitor
+      </Link>
+    </Typography>,
+    <Typography key="3" sx={{ color: 'text.primary', cursor: 'pointer', paddingX: "7px" }}>
+      Users
+    </Typography>
   ];
 
   const handleOpenAdd = () => setOpenAdd(true);
@@ -110,25 +144,38 @@ const Visitor = () => {
   return (
     <>
       <AddVisitor open={openAdd} handleClose={handleCloseAdd} />
-      <Container>
-        <Stack direction="row" alignItems="center" mb={5} justifyContent={'space-between'}>
-          <Typography variant="h4">Visitor Management </Typography>
+      <Container >
+        <Stack direction="row" alignItems="center" mb={5} justifyContent={'space-between'} sx={{ paddingX: "15px", paddingY: "18px", background: "white", borderRadius: "10px", marginBottom: "20px" }}>
+          <Typography variant="h4" sx={{ fontWeight: "600" }}>Visitor Management </Typography>
           <Stack direction="row" alignItems="center" justifyContent={'flex-end'} spacing={2}>
-            <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={handleOpenAdd}>
+            {/* <Button variant="contained" startIcon={<Iconify icon="eva:plus-fill" />} onClick={handleOpenAdd}>
               New Visitor
-            </Button>
+            </Button> */}
+            <Breadcrumbs separator="›" aria-label="breadcrumb">
+              {breadcrumbs}
+            </Breadcrumbs>
           </Stack>
         </Stack>
         <TableStyle>
           <Box width="100%">
-            <Card style={{ height: '600px', paddingTop: '15px' }}>
+            <Card style={{ height: '600px' }}>
+              <Stack sx={{ padding: "10px", marginRight: "10px" }} direction={'row'} justifyContent={'flex-end'}>
+                <Stack sx={{ marginRight: "-7%", marginTop: "10px", flexDirection: "row" }}>
+                  <TextField variant="outlined" size='small' placeholder="Search Name" sx={{ marginBottom: '10px', marginRight: "-20%" }} />
+                  <Button color="inherit" variant="text" sx={{ marginLeft: '', marginBottom: '10px', '&:hover': { backgroundColor: 'initial', boxShadow: 'none' }, }}><SearchIcon fontSize="small" /></Button>
+                </Stack>
+                <IconButton color='secondary'>
+                  <AddIcon onClick={handleOpenAdd} />
+                </IconButton>
+              </Stack>
+              <Divider />
               <DataGrid
                 rows={leadData}
                 columns={columns}
                 checkboxSelection
                 getRowId={(row) => row.id}
-                slots={{ toolbar: GridToolbar }}
-                slotProps={{ toolbar: { showQuickFilter: true } }}
+              // slots={{ toolbar: GridToolbar }}
+              // slotProps={{ toolbar: { showQuickFilter: true } }}
               />
             </Card>
           </Box>

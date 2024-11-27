@@ -7,63 +7,58 @@ import TableStyle from '../../ui-component/TableStyle';
 import { DataGrid, GridToolbar } from '@mui/x-data-grid';
 
 import Iconify from '../../ui-component/iconify';
-import AddCalls from './AddPasses';
+import AddPasses from './AddPasses';
 // ----------------------------------------------------------------------
 
 const callData = [
   {
     id: 1,
-    subject: 'Task Testing',
-    status: 'In progress',
-    startDate: '08/01/2024',
-    duration: '30 min',
-    relatedTo: 'petter england',
-    assignedUser: 'active user'
+    Name: 'Neeraj Chouhan',
+    passCode: 'neer0604',
+    validityTo: '08/01/2024',
+    accessLevel: 'Full Access',
+    more:'edit'
   }
 ];
 const Passes = () => {
   const [openAdd, setOpenAdd] = useState(false);
   const columns = [
     {
-      field: 'subject',
-      headerName: 'Subject',
+      field: 'Name',
+      headerName: 'Name',
       flex: 1,
       cellClassName: 'name-column--cell name-column--cell--capitalize'
     },
 
     {
-      field: 'startDate',
-      headerName: ' Start Date&Time',
+      field: 'passCode',
+      headerName: 'Pass Code',
       flex: 1
     },
 
     {
-      field: 'duration',
-      headerName: 'Duration',
+      field: 'validityTo',
+      headerName: 'Validity To',
       flex: 1
     },
     {
-      field: 'status',
-      headerName: 'Status',
+      field: 'accessLevel',
+      headerName: 'Access Level',
       flex: 1,
       cellClassName: 'name-column--cell--capitalize'
     },
     {
-      field: 'relatedTo',
-      headerName: 'Related To',
-      flex: 1
-    },
-    {
-      field: 'assignedUser',
-      headerName: 'Assigned User',
-      flex: 1
+      field: 'more',
+      headerName: 'More',
+      flex: 1,
+      cellClassName: 'name-column--cell--capitalize'
     }
   ];
   const handleOpenAdd = () => setOpenAdd(true);
   const handleCloseAdd = () => setOpenAdd(false);
   return (
     <>
-      <AddCalls open={openAdd} handleClose={handleCloseAdd} />
+      <AddPasses open={openAdd} handleClose={handleCloseAdd} />
       <Container>
         <Stack direction="row" alignItems="center" mb={5} justifyContent={'space-between'}>
           <Typography variant="h4">Passes Management</Typography>
