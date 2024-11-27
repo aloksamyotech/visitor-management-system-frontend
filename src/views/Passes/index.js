@@ -16,7 +16,7 @@ const callData = [
     Name: 'Neeraj Chouhan',
     passCode: 'neer0604',
     validityTo: '08/01/2024',
-    accessLevel: '30 min',
+    accessLevel: 'Full Access',
     more:'edit'
   }
 ];

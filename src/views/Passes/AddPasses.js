@@ -30,7 +30,8 @@ const AddPasses = (props) => {
   const validationSchema = yup.object({
     visitorName: yup.string().required('Select Name'),
     passCode: yup.string().required('Passcode is required'),
-    validity: yup.string().required('validity is required'),
+    validityFrom: yup.number().required('validity is required'),
+    validityTo: yup.number().required('validity is required'),
     accessLevel: yup.string().required('Access is Required'),
     note: yup.string().required('Note is required')
   });
@@ -39,8 +40,8 @@ const AddPasses = (props) => {
   const initialValues = {
     visitorName: '',
     passCode: '',
-    validityfrom: '',
-    validityto: '',
+    validityFrom: '',
+    validityTo: '',
     accessLevel: '',
     note: ''
     // createdBy: userid,
@@ -157,16 +158,16 @@ const AddPasses = (props) => {
                   <FormControl>
                     <FormLabel>Validity From</FormLabel>
                     <TextField
-                      id="validityfrom"
-                      name="validityfrom"
+                      id="validityFrom"
+                      name="validityFrom"
                       size="small"
                       type=""
                       label=""
                       fullWidth
-                      value={formik.values.validityfrom}
+                      value={formik.values.validityFrom}
                       onChange={formik.handleChange}
-                      error={formik.touched.validityfrom && Boolean(formik.errors.validity)}
-                      helperText={formik.touched.validityfrom && formik.errors.validity}
+                      error={formik.touched.validityFrom && Boolean(formik.errors.validityFrom)}
+                      helperText={formik.touched.validityFrom && formik.errors.validityFrom}
                     />
                   </FormControl>
                 </Grid>
@@ -174,16 +175,16 @@ const AddPasses = (props) => {
                   <FormControl fullWidth>
                     <FormLabel>Validity To</FormLabel>
                     <TextField
-                      id="startDateTime"
-                      name="startDateTime"
+                      id="validityTo"
+                      name="validityTo"
                       size="small"
                       type=""
                       label=""
                       fullWidth
-                      value={formik.values.startDateTime}
+                      value={formik.values.validityTo}
                       onChange={formik.handleChange}
-                      error={formik.touched.validityto && Boolean(formik.errors.validity)}
-                      helperText={formik.touched.validityto && formik.errors.validity}
+                      error={formik.touched.validityTo && Boolean(formik.errors.validityTo)}
+                      helperText={formik.touched.validityTo && formik.errors.validityTo}
                     />
                   </FormControl>
                 </Grid>
@@ -203,7 +204,7 @@ const AddPasses = (props) => {
                     >
                       <MenuItem value="1st floor">1st Floor</MenuItem>
                       <MenuItem value="2nd floor">2nd Floor</MenuItem>
-                      <MenuItem value="Full">Full</MenuItem>
+                      <MenuItem value="Full">Full Access</MenuItem>
                       <MenuItem value="Restricted">Restricted</MenuItem>
                     </Select>
                     <FormHelperText error={formik.touched.accessLevel && Boolean(formik.errors.accessLevel)}>{formik.touched.accessLevel && formik.errors.accessLevel}</FormHelperText>
